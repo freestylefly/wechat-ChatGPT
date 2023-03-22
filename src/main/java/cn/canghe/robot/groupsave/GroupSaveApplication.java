@@ -16,6 +16,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author canghe
+ *
  */
 @SpringBootApplication
 @ComponentScan({"cn.canghe"})
