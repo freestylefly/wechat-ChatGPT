@@ -24,4 +24,9 @@ public class RabbitConfig {
         return new Queue(RabbitMqQueues.WX_SEND_MSG);
     }
 
+    @Bean(RabbitMqQueues.WORK_TOOL_SEND_RAW_MSG)
+    public Queue workToolSendRawMsg() {
+        return new Queue(RabbitMqQueues.WORK_TOOL_SEND_RAW_MSG);
+    }
+
 }

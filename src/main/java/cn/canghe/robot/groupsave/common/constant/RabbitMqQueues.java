@@ -8,7 +8,6 @@ package cn.canghe.robot.groupsave.common.constant;
  */
 public class RabbitMqQueues {
 
-
     /**
      * 初始化单个群
      */
@@ -18,5 +17,10 @@ public class RabbitMqQueues {
      * 发送消息
      */
     public static final String WX_SEND_MSG = "wx_send_msg";
+
+    /**
+     * worktool发送指令消息
+     */
+    public static final String WORK_TOOL_SEND_RAW_MSG = "work_tool_send_raw_msg";
 
 }

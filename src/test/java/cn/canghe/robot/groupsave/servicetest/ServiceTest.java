@@ -3,10 +3,16 @@ package cn.canghe.robot.groupsave.servicetest;
 import cn.canghe.robot.groupsave.common.properties.CommonProperties;
 import cn.canghe.robot.groupsave.common.util.DateUtils;
 import cn.canghe.robot.groupsave.common.util.RobertUtils;
+import cn.canghe.robot.groupsave.pojo.worktool.SendRawMsgEntity;
+import cn.canghe.robot.groupsave.pojo.worktool.WorkToolSendRawMsgDTO;
+import cn.canghe.robot.groupsave.pojo.worktool.WorkToolThirdQaDTO;
 import cn.canghe.robot.groupsave.pojo.entity.WxUserFriends;
+import cn.canghe.robot.groupsave.pojo.worktool.WorkToolThirdQaVO;
 import cn.canghe.robot.groupsave.service.LoginService;
 import cn.canghe.robot.groupsave.service.TestService;
+import cn.canghe.robot.groupsave.service.worktool.WorkToolService;
 import cn.canghe.robot.groupsave.service.WxUserFriendsService;
+import org.assertj.core.util.Lists;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +44,40 @@ public class ServiceTest {
     private WxUserFriendsService wxUserFriendsService;
     @Resource
     private RobertUtils robertUtils;
+
+    @Autowired
+    private WorkToolService workToolService;
+
+    @Test
+    public void testWorkToolQa() {
+        WorkToolThirdQaDTO dto = new WorkToolThirdQaDTO();
+        dto.setSpoken("你好啊");
+        dto.setRawSpoken("@me 你好啊");
+        dto.setReceivedName("苍何");
+        dto.setGroupName("测试群1");
+        dto.setGroupRemark("测试群1备注名");
+        dto.setRoomType("1");
+        dto.setAtMe(true);
+        dto.setTextType(1);
+        WorkToolThirdQaVO workToolThirdQaVO = workToolService.qaConverse(dto);
+        System.out.println(workToolThirdQaVO.getInfo());
+    }
+
+    @Test
+    public void testWorkToolSendQawMsg() {
+        WorkToolSendRawMsgDTO dto = new WorkToolSendRawMsgDTO();
+        dto.setSocketType(2);
+        ArrayList<SendRawMsgEntity> entities = new ArrayList<>();
+        SendRawMsgEntity entity = new SendRawMsgEntity();
+        entity.setType(203);
+        entity.setTitleList(Lists.newArrayList("苍何"));
+        entity.setReceivedContent("你好啊");
+        entity.setAtList(Lists.newArrayList("@所有人"));
+        entities.add(entity);
+        dto.setList(entities);
+        String response = workToolService.sendRawMessage(dto);
+        System.out.println(response);
+    }
 
     @Test
     public void testMysql() {

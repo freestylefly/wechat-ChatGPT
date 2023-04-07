@@ -4,7 +4,7 @@ spring:
     # 以下填数据库相关信息
     url: jdbc:mysql://127.0.0.1:3306/robert?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&autoReconnect=true&characterEncoding=utf8
     username: root
-    password: aaaaa123
+    password: 123456
     #数据源配置
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
